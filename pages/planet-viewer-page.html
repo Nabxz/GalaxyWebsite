@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--Website Name & Icon-->
+        <title>Galaxy</title>
+
+        <!--FavIcon-->
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+        <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
+        <link rel="mask-icon" href="../assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        <!--Link To CSS-->
+        <link rel="stylesheet" href="../assets/css/style.css">
+
+        <!--Connecting To Google Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;1,200&family=Roboto:wght@100;400;900&display=swap" rel="stylesheet">
+            
+    </head>
+
+    <body>
+       
+        <header class="spaced">
+
+            <a href="../index.html" id="pageStart">
+                <img src="../assets/images/nav-bar/Logo.webp" alt="NASA Logo" class="logo">
+            </a>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="../index.html">HOME</a></li>
+                    <li><a href="./missions-page.html">MISSIONS</a></li>
+                    <li><a href="./articles-page.html">ARTICLES</a></li>
+                    <li><a href="./planets-page.html">PLANETS</a></li>
+
+                    <!--Profile-->
+                    <li>
+                        <a href="./sign-in-page.html">
+                            <img src="../assets/images/nav-bar/user-icon-white.png" alt="Profile Icon">
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            
+            
+            
+        </header>
+
+
+        <div class="back-button section">
+            <button>< Back</button>
+        </div>
+        
+        <div class="planet-search-bar">
+            <div class="planet-search-container">
+                <input type="text" placeholder="Search Planets - Explore Our Solar System and Beyond..." class="planet-search-input">
+            </div>
+        </div> <!--End Of Home-Search-Bar-->
+
+
+        <div id="planet-details" class="section"></div>
+
+
+
+        <footer>
+            <!-- Back To Top -->
+            <div class="back-to-top">
+                <a href="#pageStart">
+                    <img src="../assets/images/footer/back-to-top.webp">
+                    <p>BACK TO TOP</p>
+                </a>
+            </div>
+        
+            <!-- Download Our App -->
+            <div class="download-app">
+                <h1>STAY UP TO DATE, DOWNLAOD OUR APP.</h1>
+                <a href="https://www.apple.com/ca/app-store/">
+                    <img src="../assets/images/footer/app-store.webp" alt="Download on The App Store">
+                </a>
+                <a href="https://play.google.com/store/games?hl=en&gl=US&pli=1">
+                    <img src="../assets/images/footer/play-store.webp" alt="Get it on Google Play">
+                </a>
+            </div>
+        
+            <!-- Links & Newsletter -->
+            <div class="links-newsletter">
+
+
+                <div class="information">
+                    <h3>INFORMATION</h3>
+                    <p>For updates follow us on social media.</p>
+                    
+                    <a href="https://facebook.com">
+                        <img src="../assets/images/social-media/facebook-icon.webp">
+                    </a>
+    
+                    <a href="https://twitter.com">
+                        <img src="../assets/images/social-media/twitter-icon.webp">
+                    </a>
+    
+                    <a href="https://youtube.com">
+                        <img src="../assets/images/social-media/youtube-icon.webp">
+                    </a>
+    
+                    <a href="https://instagram.com">
+                        <img src="../assets/images/social-media/insta-icon.webp">
+                    </a>
+                </div> <!--End of information-->
+
+
+                <div class="contact">
+                    <h3>CONTACT NASA</h3>
+                    <div class="send-email">
+                        <img src="../assets/images/footer/email.webp" alt="">
+                        <a href="mailto:contact@galaxy.com">contact@galaxy.com</a>
+                    </div>
+                    
+                    
+                    <form id="newsletter-form">
+                        <label for="newsletter-email">Subscribe To Newsletter<br></label>
+                        <input type="email" name="newsletter-email" id="newsletter-email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+
+                </div>
+                <div class="quick-links">
+                    <h3>QUICK LINKS</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="https://www.nasa.gov/">NASA</a></li>
+                        <li><a href="./articles-page.html">Articles</a></li>
+                        <li><a href="./missions-page.html">Missions</a></li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Legal Links -->
+            <div class="footer-legal">
+                <p>Galaxy Copyright &copy; 2024 All Rights Reserved.</p>
+            </div>
+        </footer>
+
+
+        <!-- Link To JavaScript-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../assets/js/planet-viewer.js"></script>
+
+    </body>
+</html>

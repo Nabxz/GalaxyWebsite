@@ -1,0 +1,3904 @@
+/* ==========================================================================
+GLOBAL SETTINGS
+========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+}
+
+/* ==========================================================================
+IMPORT SECTION
+========================================================================== */
+
+
+/* ============================================================  Root  ====*/
+
+:root {
+    /* Fonts */
+    --font: 'Roboto', sans-serif;
+
+    /* Typography */
+    --lineHeight: 1.6;
+    --fontSize-base: 1rem;
+    --fontSize-h1: calc(var(--fontSize-base) * 2.488);
+    --fontSize-h2: calc(var(--fontSize-base) * 2.074);
+    --fontSize-h3: calc(var(--fontSize-base) * 1.728);
+    --fontSize-h4: calc(var(--fontSize-base) * 1.44);
+    --fontSize-h5: calc(var(--fontSize-base) * 1.2);
+    --fontSize-h6: var(--fontSize-base);
+
+
+    /* Colors */
+    --primary-color: #0b3d91;
+    --secondary-color: #00ffbb;
+    --secondary-color2: ghostwhite;
+
+}
+
+/* ======================================================================= */
+
+/* ==========================================================================
+GENERAL STYLES
+========================================================================== */
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Applied Typeography */
+body {
+    line-height: var(--lineHeight);
+}
+
+h1 {
+    font-size: var(--fontSize-h1);
+}
+
+h2 {
+    font-size: var(--fontSize-h2);
+}
+
+h3 {
+    font-size: var(--fontSize-h3);
+}
+
+h4 {
+    font-size: var(--fontSize-h4);
+}
+
+h5 {
+    font-size: var(--fontSize-h5);
+}
+
+h6 {
+    font-size: var(--fontSize-h6);
+}
+
+.spaced {
+    letter-spacing: 2px;
+}
+
+.heading {
+    padding: 20px;
+}
+
+.heading h1 {
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+/* Padding */
+/* Larger screens: medium-sized devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) {
+    :root {
+        --side-padding: 2rem;
+    }
+}
+
+/* Extra large screens */
+@media (min-width: 1400px) {
+    :root {
+        --side-padding: calc(50vw - 600px);
+        /* Dynamic side padding */
+    }
+}
+
+.section {
+    padding-left: var(--side-padding);
+    padding-right: var(--side-padding);
+}
+
+.blue-text {
+    color: #007bff;
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+Nav Bar
+========================================================================== */
+header {
+    display: flex;
+    position: absolute;
+    top: 0;
+    align-items: center;
+    padding: 30px 0px;
+    /* Adjust as needed */
+    background-color: black;
+    color: white;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 1;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+header a img {
+    height: 50px;
+    margin-left: 30px;
+    transition: transform 1s ease;
+}
+
+header a img:hover {
+    transform: scale(1.02);
+}
+
+.navigation {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    /* Adjust as needed */
+    margin-right: 30px;
+}
+
+.navigation li {
+    padding: 5px 10px;
+    /* Adjust as needed */
+}
+
+.navigation a {
+    text-decoration: none;
+    position: relative;
+    color: white;
+    font-size: 16px;
+}
+
+.navigation a:hover {
+    color: var(--secondary-color);
+}
+
+.navigation a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 2.5px;
+
+    transition: bottom 0.3s ease;
+}
+
+.navigation a:hover::after {
+    background-color: var(--secondary-color);
+    bottom: -4px;
+    /* Initially set to hide the underline */
+}
+
+.navigation img {
+    height: 40px;
+    transition: opacity 0.3s, transform 0.3s;
+    margin: 0;
+    margin-top: -8px;
+    padding: 0;
+}
+
+.navigation img:hover {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    header .logo {
+        margin-bottom: 20px;
+    }
+
+    header a img {
+        margin-left: 0;
+        height: 40px;
+        /* Smaller logo for mobile */
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .navigation li {
+        padding: 3px 5px;
+    }
+
+    .navigation a {
+        font-size: 14px;
+        /* Smaller font size for mobile */
+    }
+}
+
+/* ==========================================================================
+Section: Landing Page
+========================================================================== */
+
+/* SEARCH RESULTS */
+
+/* Style for the search results container */
+#search-results {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    /* Adjust if needed */
+    left: 0;
+    width: 100%;
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.07);
+    color: white;
+    border-radius: 15px;
+    backdrop-filter: blur(4px);
+}
+
+/* Style for each search result */
+#search-results div {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover state for each search result */
+#search-results div:hover {
+    color: black;
+    background-color: #f9f9f9;
+    border-color: #e0e0e0;
+}
+
+/* Not showing results by default */
+#search-results {
+    display: none;
+}
+
+/* Showing results when search is active */
+.search-active #search-results {
+    display: block;
+}
+
+
+/* --- */
+
+.landing-page {
+    position: relative;
+    width: 100%;
+    /* Adjust as needed */
+    height: auto;
+    /* Adjust as needed */
+}
+
+.landing-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, black, transparent);
+    z-index: 0;
+    /* Ensure this is above the video but below the content */
+}
+
+#landing-page-video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+.home-search-bar {
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.search-container {
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px;
+    width: 35vw;
+    font-size: 16px;
+    /* Adjust as needed */
+    border-radius: 12px;
+    /* This will give the rounded edges */
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus::placeholder {
+    color: white;
+}
+
+.search-input::placeholder {
+    color: rgb(65, 65, 65);
+}
+
+
+.see-more {
+    position: absolute;
+    bottom: 20px;
+    /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+}
+
+.see-more p {
+    margin-bottom: -10px;
+    text-shadow: 1px 1px 5px black;
+}
+
+.see-more img {
+    height: 20px;
+    width: auto;
+}
+
+.down-arrow {
+    color: white;
+    /* Ensure this contrasts with the background */
+    font-size: 2em;
+    /* Adjust size as needed */
+    animation: bounce 3s infinite;
+}
+
+/* Keyframes for the bouncing arrow animation */
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .home-search-bar {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 10px 20px;
+        width: 80vw;
+        font-size: 16px;
+        /* Adjust as needed */
+        border-radius: 12px;
+        /* This will give the rounded edges */
+        box-sizing: border-box;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+}
+
+
+/* ==========================================================================
+Section: WHAT'S GOING ON IN SPACE
+========================================================================== */
+.whats-going-on-in-space-section {
+    background-color: black;
+    color: white;
+    padding-bottom: 100px;
+}
+
+#particles-js {
+    margin: 0;
+    padding: 0;
+    width: 90vw;
+    height: 90%;
+    position: absolute;
+    top: 1000px;
+    z-index: 0;
+}
+
+.space-section-container,
+.screen-class,
+.tab,
+.tab button,
+.tabcontent,
+.tablinks,
+#space-weather,
+#astronomical-event,
+#space-missions,
+#Images,
+#images-content,
+.gallery-container,
+.gallery-section,
+.image-grid,
+#Live,
+#live-main,
+#live-sidebar,
+#image-of-the-day {
+    z-index: 3;
+}
+
+/* ------------- */
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: #f1f1f17a;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    height: 44px;
+    width: 115px;
+    text-align: left;
+    padding-left: 20px;
+    transition: 0.3s;
+}
+
+.tab .tablinks:last-child {
+    border-top-right-radius: 10px;
+    /* Adjust the radius as needed */
+}
+
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+}
+
+/* Style for fullwidth content when Images tab is selected */
+.fullwidth-content {
+    display: none;
+    /* Hidden by default, displayed by JS */
+}
+
+/* Style for Live content layout */
+.largescreen-content {
+    float: left;
+    width: 70%;
+    display: none;
+    /* Hidden by default, displayed by JS */
+}
+
+.sidebar-content {
+    float: left;
+    width: 30%;
+    display: none;
+    /* Hidden by default, displayed by JS */
+}
+
+#Home {
+    display: flex;
+    /* Establish flex container */
+    flex-direction: row;
+    /* Align children horizontally */
+    justify-content: space-between;
+    /* Add space between the children */
+    align-items: flex-start;
+    /* Align children at the top of the container */
+    width: 100%;
+}
+
+#space-weather {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    /* Rounded corners */
+    border-top-left-radius: 0px;
+    /* Adjust the radius as needed */
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Slight white border for a lifted effect */
+    color: #fff;
+    /* White text color */
+    max-width: 57%;
+    /* Width */
+    flex: 1;
+    min-height: 100%;
+    max-height: 640px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    backdrop-filter: blur(4px);
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    /* Stack the children vertically */
+    flex: 2;
+    /* Allow the right side to take twice as much space as space-weather */
+    max-width: 37%;
+    /* Width */
+    max-height: 680px;
+}
+
+#astronomical-event {
+    margin-bottom: 20px;
+    /* Add space between the two divs */
+}
+
+#astronomical-event,
+#space-missions {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+    /* Subtle shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Slight white border for a lifted effect */
+    color: #fff;
+    /* White text color */
+    flex: 1;
+    max-height: 290px;
+    backdrop-filter: blur(4px);
+
+}
+
+.table-scroller {
+    max-height: 210px;
+    overflow-y: scroll;
+}
+
+.weather-heading {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.weather-data {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.weather-element {
+    text-align: center;
+}
+
+.weather-element h3 {
+    font-size: 1.5rem;
+}
+
+.weather-icon {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.notice {
+    font-style: italic;
+    color: #6b7c93;
+    font-size: 0.9rem;
+}
+
+.mini-article {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.mini-article img {
+    border-radius: 7px;
+    width: 99%;
+    margin-top: 20px;
+}
+
+.read-more-btn {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+    background-color: var(--secondary-color);
+    color: black;
+}
+
+.scrollable-list {
+    max-height: 300px;
+    /* Set a max-height that fits your design */
+    overflow-y: auto;
+    /* Adds a vertical scrollbar */
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    /* Border to define the scrollable area */
+    border-radius: 4px;
+    width: 80%;
+}
+
+.cme-event,
+.solar-flare-event {
+    padding: 5px;
+    border-bottom: 1px solid #e1e1e1;
+    /* Separate events with a line */
+}
+
+.cme-event:last-child,
+.solar-flare-event:last-child {
+    border-bottom: none;
+    /* Remove bottom border from the last event */
+}
+
+.key-data {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+.events-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* To ensure the border-radius affects child elements */
+}
+
+.events-table th,
+.events-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.events-table th {
+    background-color: #333;
+    /* A dark background for the header */
+    color: #fff;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.events-table tbody tr:nth-child(even) {
+    background-color: #000000;
+}
+
+.events-table tbody tr:hover {
+    background-color: var(--primary-color);
+    color: black;
+    cursor: pointer;
+}
+
+.events-table tbody td {
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.calender-tip {
+    color: gray;
+    font-style: italic;
+    margin-top: -6px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+#Images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 30px;
+}
+
+#images-content {
+    height: 640px;
+    max-width: 34%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    /* Rounded corners */
+
+    /* Adjust the radius as needed */
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Slight white border for a lifted effect */
+    color: #fff;
+    /* White text color */
+    min-height: 100%;
+    max-height: 640px;
+    flex: 2;
+    backdrop-filter: blur(4px);
+}
+
+#image-of-the-day {
+    height: 640px;
+    max-width: 60%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    border-top-left-radius: 0px;
+    /* Adjust the radius as needed */
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Slight white border for a lifted effect */
+    color: #fff;
+    /* White text color */
+    min-height: 100%;
+    max-height: 640px;
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    backdrop-filter: blur(4px);
+}
+
+.image-of-day-container img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.image-of-day-container iframe {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.gallery-container {
+    overflow-y: scroll;
+    height: 100%;
+    /* Adjust as needed */
+}
+
+.gallery-section {
+    margin-bottom: 2rem;
+}
+
+.gallery-section h2 {
+    transition: color 0.3s ease;
+}
+
+.gallery-section h2:hover {
+    color: var(--secondary-color);
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.see-more-link {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 30px;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.see-more-link:hover {
+    color: var(--secondary-color);
+}
+
+
+#Live {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    /* Space between main and sidebar */
+}
+
+.live-main-video {
+    height: 90%;
+}
+
+#live-main {
+    flex-grow: 1;
+    height: 640px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    /* Rounded corners */
+    border-top-left-radius: 0px;
+    /* Adjust the radius as needed */
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Slight white border for a lifted effect */
+    color: #fff;
+    /* White text color */
+    min-height: 100%;
+    max-height: 640px;
+    backdrop-filter: blur(4px);
+}
+
+#live-main iframe {
+    border-radius: 7px;
+}
+
+#live-sidebar {
+    flex-basis: 200px;
+    /* Sidebar width */
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+#live-sidebar button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    height: 60px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+#live-sidebar button:last-child {
+    border-bottom: none;
+}
+
+
+#live-sidebar button:hover {
+    background-color: #0056b3;
+    /* Button hover color */
+}
+
+
+
+/* Mobile Responsive */
+@media (max-width: 1200px) {
+    .whats-going-on-in-space-section {
+        height: 100%;
+        padding-bottom: 200px;
+    }
+
+    .table-scroller {
+        max-height: 290px;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: #f1f1f17a;
+        float: left;
+        height: 44px;
+        width: 33.3%;
+        text-align: center;
+        padding-left: 0px;
+        transition: 0.3s;
+    }
+
+    .tab .tablinks:last-child {
+        border-top-right-radius: 0px;
+        /* Adjust the radius as needed */
+    }
+
+    #Home {
+        display: block !important;
+        width: 100%;
+    }
+
+    #space-weather,
+    #images-content {
+        padding: 20px;
+        max-width: 100%;
+        background-color: black;
+        box-shadow: none;
+        border: none;
+        max-height: none;
+        overflow: hidden;
+    }
+
+    #astronomical-event,
+    #space-missions {
+        padding: 20px;
+        max-width: 100%;
+        background-color: black;
+        box-shadow: none;
+        border: none;
+        max-height: 400px;
+    }
+
+    .right-side {
+        display: block;
+        max-width: 90%;
+        height: 680px;
+    }
+
+
+    #particles-js {
+        display: none;
+        z-index: -1;
+    }
+
+
+
+    .events-table,
+    .events-table thead,
+    .events-table tbody,
+    .events-table th,
+    .events-table td,
+    .events-table tr {
+        display: block;
+    }
+
+    .events-table th {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .events-table tr {
+        margin-bottom: 10px;
+    }
+
+    .events-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .events-table td:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        transform: translateY(-50%);
+        font-weight: bold;
+        text-align: left;
+        content: attr(data-label);
+    }
+
+    #Images {
+        flex-direction: column;
+    }
+
+    #images-content {
+        height: auto;
+        max-width: 100%;
+        background-color: transparent;
+        padding: 20px;
+        min-height: 100%;
+        flex: 2;
+    }
+
+    #image-of-the-day {
+        max-width: 100%;
+        background-color: transparent;
+        padding: 20px;
+        min-height: 100%;
+        flex: 1;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        border: none;
+        box-shadow: none;
+        min-height: 100%;
+        max-height: none;
+        margin-top: 20px;
+    }
+
+    .image-of-day-container img {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .gallery-container {
+        overflow-y: hidden;
+    }
+
+    #Live {
+        flex-direction: column;
+    }
+
+    #live-main {
+        padding: 0px;
+        padding-top: 30px;
+        padding-bottom: 80px;
+        width: 99%;
+        height: 350px;
+        border-top-right-radius: 0px;
+    }
+
+    #live-main h1 {
+        font-size: 1.8rem;
+        margin-left: 10px;
+    }
+
+    .live-main-video {
+        width: 90%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #live-sidebar {
+        width: 99%;
+        background-color: rgba(255, 255, 255, 0.07);
+        border-radius: 0px;
+    }
+
+    #live-sidebar button {
+        border-radius: 0px;
+    }
+
+}
+
+
+/* ==========================================================================
+Section: WHAT'S GOING ON IN EARTH
+========================================================================== */
+.earth-weather-section .heading {
+    background-color: black;
+    color: white;
+}
+
+.earth-weather-section {
+    position: relative;
+}
+
+
+.earth-section-container {
+    position: absolute;
+    top: 300px;
+    /* Adjust as necessary */
+    z-index: 10;
+
+}
+
+.earth-section {
+    width: 98vw;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    /* Center children horizontally */
+    align-items: center;
+    /* Center children vertically */
+}
+
+.earth-search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.earth-search-input {
+    border: none;
+    outline: none;
+    padding: 15px;
+    width: 540px;
+    text-align: left;
+    font-size: 16px;
+    background-color: transparent;
+    /* Makes the background transparent */
+    border-bottom: 2px solid #ccc;
+}
+
+
+.earth-search-input:focus {
+    color: white;
+    border-bottom: 2px solid #007bff;
+    /* Change color as desired */
+}
+
+.earth-section-results-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.earth-section-results {
+    height: 500px;
+    width: 800px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    border-top-left-radius: 0px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-shadow: black 1px 1px;
+    overflow-y: scroll;
+    backdrop-filter: blur(5px);
+}
+
+.close-button button {
+    margin-top: 60px;
+    background-color: #f1f1f17a;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    height: 44px;
+    width: 115px;
+    text-align: left;
+    padding-left: 20px;
+    transition: 0.3s;
+    border-top-right-radius: 10px;
+}
+
+/* Change background color of buttons on hover */
+.close-button button:hover {
+    background-color: #e15f5f;
+}
+
+.result {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.result:hover {
+    background-color: #dddddd1c;
+    border-left: 5px solid #007bff;
+    border-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.result:focus {
+    border-radius: 4px;
+    background-color: #007bff50;
+}
+
+/* WEATHER */
+
+.weather-info-temp h1 {
+    font-size: 5rem;
+    font-weight: 100;
+    padding-left: 10px;
+}
+
+.weather-info-section {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.weather-info-section hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.weather-info-section-collection {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.weather-info-section-box {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.weather-info-section-box .title {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.weather-info-section-box .title img {
+    width: 24px;
+    height: auto;
+}
+
+.weather-info-section-box .title p {
+    color: #cfd6e8;
+}
+
+.weather-info-section-box .data p {
+    font-size: x-large;
+}
+
+.daylight-progress-container {
+    position: relative;
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.daylight-progress-bar {
+    height: 20px;
+    background-color: #6fa8dc;
+    border-radius: 5px;
+    position: relative;
+    /* To position the current time indicator */
+}
+
+.current-time-indicator {
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    /* or whatever width you want for the indicator */
+    background-color: #fff;
+    /* or any color that stands out */
+}
+
+.sun-times {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: calc(100% - 10px);
+    /* adjust based on padding */
+    top: 30px;
+    padding: 0 5px;
+    /* adjust as needed */
+}
+
+.sunrise-time,
+.sunset-time {
+    flex: none;
+    /* don't grow or shrink */
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* Adjust the gap as needed */
+    justify-content: center;
+}
+
+.image-container {
+    width: calc(33.333% - 10px);
+    /* Three images per row with 10px gap */
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 900px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+.image-slider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, black, transparent 40%);
+    z-index: 5;
+    /* Ensure this is above the video but below the content */
+}
+
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 750px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.slider-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 1.1s ease-in-out;
+}
+
+.slider-image.active {
+    opacity: 1;
+}
+
+
+.slider-controls {
+    position: absolute;
+    bottom: 10px;
+    right: 40px;
+    width: 450px;
+    text-align: center;
+    z-index: 6;
+}
+
+.prev-btn,
+.next-btn,
+.pause-btn {
+    scale: 1.5;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.prev-btn,
+.next-btn,
+.pause-btn {
+    background: none;
+    color: white;
+}
+
+.prev-btn {
+    left: 50px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.pause-btn {
+    right: 60px;
+}
+
+.slider-dots {
+    display: inline-block;
+}
+
+#slider-dots-1 {
+    background-image: url("../images/homepage/earth-backgrounds/earth-bg-1.webp");
+    background-size: cover;
+    /* This will cover the entire element's area without stretching the image */
+    background-position: center;
+    /* This centers the image within the element */
+    background-repeat: no-repeat;
+    /* This prevents the image from repeating */
+}
+
+#slider-dots-2 {
+    background-image: url("../images/homepage/earth-backgrounds/earth-bg-2.webp");
+    background-size: cover;
+    /* This will cover the entire element's area without stretching the image */
+    background-position: center;
+    /* This centers the image within the element */
+    background-repeat: no-repeat;
+    /* This prevents the image from repeating */
+}
+
+#slider-dots-3 {
+    background-image: url("../images/homepage/earth-backgrounds/earth-bg-3.webp");
+    background-size: cover;
+    /* This will cover the entire element's area without stretching the image */
+    background-position: center;
+    /* This centers the image within the element */
+    background-repeat: no-repeat;
+    /* This prevents the image from repeating */
+}
+
+#slider-dots-4 {
+    background-image: url("../images/homepage/earth-backgrounds/earth-bg-4.webp");
+    background-size: cover;
+    /* This will cover the entire element's area without stretching the image */
+    background-position: center;
+    /* This centers the image within the element */
+    background-repeat: no-repeat;
+    /* This prevents the image from repeating */
+}
+
+
+.dot {
+    height: 60px;
+    width: 60px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #717171;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1200px) {
+    .earth-weather-section .heading {
+        margin-top: 0px;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    .earth-section {
+        width: 90vw;
+        padding-left: 20px;
+    }
+
+    .earth-search-input {
+        padding: 15px;
+        width: 350px;
+    }
+
+    .earth-section-results {
+        height: 500px;
+        width: 90%;
+    }
+}
+
+
+
+/* ==========================================================================
+Page: Planets-Page
+========================================================================== */
+.planet-viewer-section {
+    margin-top: 80px;
+}
+
+#all-planet-search-results {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 30px;
+    width: 650px;
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 15px;
+    backdrop-filter: blur(4px);
+}
+
+#all-planet-search-results-white {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 30px;
+    width: 650px;
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    border-radius: 15px;
+    backdrop-filter: blur(4px);
+}
+
+/* Style for each search result */
+#all-planet-search-results div,
+#all-planet-search-results-white div {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover state for each search result */
+#all-planet-search-results div:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#all-planet-search-results-white div:hover {
+    background-color: rgba(48, 48, 48, 0.8);
+    color: white;
+}
+
+/* Not showing results by default */
+#all-planet-search-results,
+#all-planet-search-results-white {
+    display: none;
+}
+
+/* Showing results when search is active */
+.planet-search-active #all-planet-search-results,
+#all-planet-search-results-white {
+    display: block;
+}
+
+.planet-viewer-box-header h1 {
+    font-size: 4rem;
+    font-weight: 100;
+}
+
+.planet-viewer-box-data-dual {
+    display: flex;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.planet-viewer-box-data-dual .dual-box-one {
+    width: 30%;
+    padding: 5px;
+}
+
+.planet-viewer-box-data-dual .dual-box-one img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.planet-viewer-box-data-dual .dual-box-two {
+    width: 60%;
+    padding: 20px;
+}
+
+.planet-viewer-box-data-scroller {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.box-scroller {
+    width: 25%;
+    text-align: center;
+}
+
+.box-scroller h5 {
+    font-size: 1.1rem;
+}
+
+.box-scroller img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.planet-viewer-box-data img {
+    width: 100%;
+}
+
+.planet-viewer-box-data {
+    position: relative;
+}
+
+.info-overlay {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    color: white;
+    padding: 20px;
+    text-align: right;
+}
+
+.info-overlay h1 {
+    font-weight: 100;
+}
+
+.info-overlay p {
+    font-weight: 100;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.info-overlay button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0.6s;
+    border-radius: 6px;
+}
+
+.info-overlay button:hover {
+    background-color: white;
+    color: black;
+}
+
+@media (max-width: 1000px) {
+    .planet-viewer-section {
+        padding: 10px;
+    }
+
+    #all-planet-search-results {
+        width: 90%;
+    }
+
+    .planet-viewer-box-data-dual {
+        flex-direction: column;
+    }
+
+    .planet-viewer-box-data-dual .dual-box-one {
+        width: 450px;
+    }
+
+    .planet-viewer-box-data-dual .dual-box-two {
+        width: 400px;
+    }
+
+    .planet-viewer-box-data-scroller {
+        flex-direction: column;
+    }
+
+    .box-scroller {
+        width: 100%;
+    }
+
+    .info-overlay {
+        bottom: -280px;
+        left: 0px;
+        color: black;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .box-data-space-down {
+        margin-bottom: 280px;
+    }
+
+}
+
+@media (max-width: 650px) {
+    .info-overlay {
+        bottom: -370px;
+        left: 0px;
+        color: black;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .box-data-space-down {
+        margin-bottom: 380px;
+    }
+}
+
+/* ==========================================================================
+Page: Planet-Viewer
+========================================================================== */
+.back-button {
+    margin-top: 180px;
+    margin-bottom: 30px;
+}
+
+.back-button button {
+    background-color: rgb(187, 187, 187);
+    /* Green background */
+    border: none;
+    /* No borders */
+    color: white;
+    /* White text */
+    padding: 10px 20px;
+    /* Some padding */
+    text-align: center;
+    /* Center-aligned text */
+    text-decoration: none;
+    /* No underline */
+    display: inline-block;
+    /* Use inline-block */
+    font-size: 16px;
+    /* Set a font-size */
+    margin: 4px 2px;
+    /* Some margin */
+    cursor: pointer;
+    /* Pointer/hand icon */
+    border-radius: 5px;
+    /* Rounded corners */
+    transition-duration: 0.4s;
+    /* 0.4 second transition effect on hover */
+}
+
+/* Change the background and color of button on hover */
+.back-button button:hover {
+    background-color: rgb(101, 101, 101);
+}
+
+.planet-search-bar {
+    margin-bottom: 20px;
+}
+
+.planet-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    /* Set a height for your search container */
+}
+
+.planet-search-container {
+    margin: 0 auto;
+    position: relative;
+}
+
+#planet-search-results {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 30px;
+    width: 650px;
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.07);
+    color: black;
+    border-radius: 15px;
+    backdrop-filter: blur(4px);
+}
+
+/* Style for each search result */
+#planet-search-results div {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover state for each search result */
+#planet-search-results div:hover {
+    color: black;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Not showing results by default */
+#planet-search-results {
+    display: none;
+}
+
+/* Showing results when search is active */
+.planet-search-active #planet-search-results {
+    display: block;
+}
+
+.planet-search-input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 500px;
+    height: 35px;
+    border-bottom: 2px solid #ccc;
+    /* Bottom border line */
+    font-size: 16px;
+    /* Example font size */
+    color: #333;
+    /* Example text color */
+    margin-right: 10px;
+
+}
+
+.planet-search-input-white {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 500px;
+    height: 35px;
+    border-bottom: 2px solid #ccc;
+    /* Bottom border line */
+    font-size: 16px;
+    /* Example font size */
+    color: white;
+    /* Example text color */
+    margin-right: 10px;
+}
+
+.planet-search-input::placeholder {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.planet-search-input:focus {
+    border-bottom: 2px solid #000;
+    /* Darker line for focus */
+}
+
+.planet-search-input-white:focus {
+    border-bottom: 2px solid var(--primary-color);
+    /* Darker line for focus */
+}
+
+.planet-heading {
+    overflow-wrap: break-word;
+}
+
+.planet-heading h1 {
+    font-size: 8rem;
+    font-weight: 100;
+}
+
+.planet-details-box h3 {
+    font-weight: 100;
+    font-size: 2rem;
+}
+
+.planet-details-box .box-data {
+    background-color: var(--secondary-color2);
+    border-radius: 15px;
+    border: 1px solid black;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.planet-details-box .box-data p {
+    padding: 20px 25px;
+}
+
+.planet-details-box .box-data p:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+@media (max-width: 1000px) {
+    .back-button {
+        margin-top: 350px;
+        margin-bottom: 100px;
+        margin-left: 20px;
+    }
+
+    #planet-details {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .planet-search-bar {
+        margin-bottom: 50px;
+    }
+
+    .planet-search-input,
+    .planet-search-input-white {
+        width: 400px;
+    }
+
+    #planet-search-results {
+        width: 90%;
+    }
+
+    .planet-heading h1 {
+        font-size: 4rem;
+        font-weight: 100;
+    }
+}
+
+
+/* ==========================================================================
+Page: Solar System Page
+========================================================================== */
+.solar-system-section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.solar-system-heading h6 {
+    font-weight: 100;
+    font-size: 1.5rem;
+    margin-bottom: -20px;
+}
+
+.solar-system-heading h1 {
+    font-size: 4rem;
+}
+
+.planet-of-the-day-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.planet-of-the-day-body h1 {
+    align-self: flex-start;
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
+.planet-of-the-day-body p {
+    align-self: flex-start;
+    margin: 20px 0;
+}
+
+
+.solar-system-facts-container {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.solar-system-facts-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+    height: 150px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--secondary-color2);
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out;
+}
+
+.solar-system-facts-box h6 {
+    font-size: 3rem;
+}
+
+.solar-system-facts-box p {
+    font-size: 1rem;
+}
+
+
+.solar-system-body,
+.solar-system-expansion-container,
+.solar-system-video-container {
+    margin-top: 50px;
+}
+
+.solar-system-expansion-title h2 {
+    cursor: pointer;
+    margin: 0;
+    padding: 10px;
+    position: relative;
+    /* For the arrow positioning */
+}
+
+.solar-system-expansion-title h2::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    /* Initial arrow pointing down */
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    /* Adjust size of the arrow */
+    transition: transform 0.3s ease-in-out;
+    /* Smooth rotation */
+}
+
+/* Rotate arrow when section is expanded */
+.expanded h2::after {
+    transform: translateY(-50%) rotate(-135deg);
+    /* Arrow pointing up */
+}
+
+.solar-system-expansion {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.solar-system-expansion:first-child {
+    border-top: none;
+    /* Removes the top border from the first element */
+}
+
+.solar-system-expansion:last-child {
+    border-bottom: none;
+    /* Removes the bottom border from the last element */
+}
+
+
+.solar-system-expansion-data {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    /* Smooth transition for the max-height property */
+    padding: 0 10px;
+    /* Adjust padding for smooth animation */
+}
+
+/* Expanded state style to add padding for smooth transition */
+.expanded {
+    padding: 10px;
+}
+
+.solar-system-video-container iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 7px;
+}
+
+.solar-system-horizontal-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 350px;
+    padding: 20px 0;
+    gap: 120px;
+
+}
+
+#space-simulation {
+    height: 500px;
+}
+
+.solar-system-scroll-box img {
+    width: 250px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.earth-solar-system-img {
+    transform: scale(2);
+}
+
+.earth-solar-system-img:hover {
+    transform: scale(2.02) rotate(2deg);
+}
+
+.trapist-solar-system-img:hover {
+    transform: scale(1.02) rotate(2deg);
+}
+
+.solar-system-scroll-box {
+    position: relative;
+    display: inline-block;
+    /* Or as per your layout */
+    width: 100%;
+}
+
+.solar-system-scroll-box-down {
+    margin-top: auto;
+}
+
+.scroll-box-info {
+    position: absolute;
+    left: 100px;
+    top: 25px;
+    right: 0;
+    background: rgb(42, 42, 42);
+    color: white;
+    border-radius: 7px;
+    transition: max-height 0.5s ease-in-out, max-width 0.5s ease-in-out;
+    overflow: hidden;
+    max-height: 30px;
+    max-width: 170px;
+    width: 100%;
+    padding: 5px;
+    overflow: scroll;
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+}
+
+
+.scroll-box-planet-name {
+    text-align: center;
+}
+
+.scroll-box-info:hover {
+    max-height: 200px;
+    max-width: 300px;
+}
+
+.scroll-box-info:hover .scroll-box-planet-name {
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-bottom: 5px;
+}
+
+.full-scroll-box-info {
+    display: none;
+}
+
+.scroll-box-info:hover .full-scroll-box-info {
+    display: block;
+}
+
+/* Ensure the text and images inside the scroll box are styled as needed */
+.scroll-box-info p,
+.scroll-box-info a {
+    margin: 0;
+    padding: 2px;
+}
+
+@media (max-width: 1000px) {
+    .solar-system-section {
+        padding: 20px;
+    }
+
+    .solar-system-facts-container {
+        flex-direction: column;
+        margin-top: 80px;
+    }
+
+    .solar-system-facts-box {
+        align-self: center;
+    }
+}
+
+
+
+/* ==========================================================================
+Page: Planet-Of-The-Day
+========================================================================== */
+.planet-of-the-day {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.planet-of-the-day-heading h6 {
+    font-weight: 100;
+    font-size: 1.5rem;
+    margin-bottom: -20px;
+}
+
+.planet-of-the-day-heading-span {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.planet-of-the-day-heading-span h1 {
+    font-size: 4rem;
+    width: 90%;
+}
+
+.planet-of-the-day-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.planet-of-the-day-body h1,
+.planet-of-the-day-body h3 {
+    align-self: flex-start;
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
+.planet-of-the-day-body p {
+    align-self: flex-start;
+    margin: 20px 0;
+}
+
+.planet-of-the-day-body iframe,
+.planet-of-the-day-body img {
+    margin: 20px 0;
+    width: 100%;
+    height: 500px;
+    border-radius: 7px;
+    object-fit: cover;
+}
+
+.planet-of-the-day-body-facts-container {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.planet-of-the-day-body-facts-container a {
+    margin-top: 20px;
+}
+
+.facts-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 250px;
+    height: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--secondary-color2);
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out;
+}
+
+.facts-box img {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.facts-box:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.facts-button {
+    padding: 10px 15px;
+    align-self: flex-start;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-top: 25px;
+    background: linear-gradient(to right, black 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: background-position 0.5s, color 0.3s;
+}
+
+.facts-button:hover {
+    background-position: left bottom;
+    color: white;
+}
+
+
+@media (max-width: 1000px) {
+    .planet-of-the-day {
+        padding: 20px;
+    }
+
+    .planet-of-the-day-heading-span h1 {
+        font-size: 4rem;
+        width: 80%;
+    }
+
+    .planet-of-the-day-body-facts-container {
+        flex-direction: column;
+    }
+}
+
+
+/* ==========================================================================
+Page: Articles
+========================================================================== */
+.article-page-container {
+    margin: 50px 0px;
+}
+
+.article-page-filter-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-page-filter-container-filters {
+    font-weight: bold;
+    display: flex;
+    gap: 50px;
+    color: black;
+    cursor: pointer;
+}
+
+.sorting-options {
+    display: flex;
+    align-items: center;
+}
+
+.sorting-options label {
+    font-weight: bold;
+    margin-right: 10px;
+    /* Space between label and select */
+}
+
+.sorting-options select {
+    border: 1px solid #ccc;
+    /* Subtle border */
+    font-size: 16px;
+    /* Readable text size */
+    color: #555;
+    /* Slightly darker text for contrast */
+    padding: 8px 12px;
+    /* Padding inside the select box */
+    border-radius: 4px;
+    /* Rounded corners for the select box */
+    cursor: pointer;
+    /* Indicate it's clickable */
+}
+
+.sorting-options-end {
+    margin-left: 30px;
+}
+
+.active-article {
+    border-bottom: 2.5px solid black;
+}
+
+.articles-header {
+    font-size: 5rem;
+}
+
+#articles-container,
+#featured-articles {
+    margin-top: 60px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.articles-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.articles-link-blue {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.articles-link-blue-ad {
+    margin-top: 25px;
+}
+
+.articles-link-blue-ad a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.articles {
+    width: 330px;
+    height: 600px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.poster-image {
+    width: 100%;
+}
+
+.articles-image {
+    position: relative;
+    width: 100%;
+}
+
+.save-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+}
+
+.save-button img {
+    transition: transform 0.3s ease-in-out;
+    width: 33px;
+    cursor: pointer;
+}
+
+.save-button img:hover {
+    transform: scale(1.08);
+}
+
+.min-read {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    font-weight: 100;
+}
+
+.article-content {
+    padding: 5px 20px;
+}
+
+.article-content .date {
+    font-weight: 100;
+}
+
+.article-content .title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.articles .read-article {
+    color: white;
+    margin-left: 190px;
+    padding: 10px;
+    margin-top: auto;
+    text-decoration: none;
+}
+
+.save-article-button {
+    padding: 10px 15px;
+    align-self: flex-start;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-top: 25px;
+    background: linear-gradient(to right, black 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: background-position 0.5s, color 0.3s;
+}
+
+.save-article-button:hover {
+    background-position: left bottom;
+    color: white;
+}
+
+.featured-articles-container {
+    margin-top: 50px;
+}
+
+.featured-articles-heading {
+    font-size: 4rem;
+}
+
+/* Grid view styles */
+.grid-view .articles {
+    width: 330px;
+    /* Fixed width for grid items */
+    height: 600px;
+    /* Fixed height for grid items */
+}
+
+/* List view styles */
+.list-view .articles {
+    width: 100%;
+    /* Full width for list items */
+    height: auto;
+    /* Auto height for list items */
+}
+
+.list-view .articles img {
+    width: 15%;
+}
+
+.list-view .save-button {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+}
+
+.list-view .save-button img {
+    transition: transform 0.3s ease-in-out;
+    width: 33px;
+    cursor: pointer;
+}
+
+.list-view .save-button img:hover {
+    transform: scale(1.08);
+}
+
+.list-view .read-article {
+    text-align: right;
+}
+
+
+
+@media (max-width: 1100px) {
+    .article-page-filter-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #articles-container {
+        justify-content: center;
+    }
+
+    #featured-articles {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1000px) {
+    .article-page-container {
+        padding: 20px;
+    }
+
+    .sorting-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sorting-options-end {
+        margin-top: 20px;
+        margin-left: 0;
+    }
+
+}
+
+/* ==========================================================================
+Page: Sign In/ Sign Up
+========================================================================== */
+.sign-in-up-container {
+    width: 100%;
+    margin-top: 118px;
+    display: flex;
+}
+
+.sign-in-up-img-contianer {
+    width: 70%;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.sign-in-up-data-container {
+    width: 25%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sign-in-up-img-contianer img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.sign-in-up-overlay-text {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    color: white;
+    text-align: center;
+    z-index: 2;
+    /* Make sure it's above the image */
+}
+
+.sign-in-up-overlay-text h2 {
+    font-size: 2.5em;
+    font-weight: 400;
+    color: black;
+    text-shadow: 1px 2px 15px white;
+}
+
+
+
+.sign-in-up-overlay-text p {
+    font-size: 1.5em;
+    font-weight: 400;
+    font-style: italic;
+    color: black;
+    text-shadow: 1px 2px 15px white;
+}
+
+.sign-in-up-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sign-in-up-img-contianer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#sign-in-up-image {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.image-hidden {
+    opacity: 0;
+}
+
+
+#sign-in-up-mode-display {
+    color: #333;
+    user-select: none;
+}
+
+#sign-in-up-text-display {
+    margin-bottom: 40px;
+}
+
+
+.sign-in-up-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style the input fields */
+.sign-in-up-display input[type="text"],
+.sign-in-up-display input[type="email"],
+.sign-in-up-display input[type="password"] {
+    padding: 15px;
+    border: 1px solid #ccc;
+    /* Light grey border */
+    border-radius: 5px;
+    /* Slightly rounded borders for a modern look */
+    font-size: 16px;
+    /* Slightly larger font for better readability */
+}
+
+/* Style the button */
+.sign-in-up-display button {
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    /* A deep blue background */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sign-in-up-display button:hover {
+    background-color: #0056b3;
+}
+
+.demo-account {
+    padding: 5px;
+    display: flex;
+    gap: 10px;
+    background-color: black;
+    color: gray;
+}
+
+@media (max-width: 1000px) {
+    .sign-in-up-container {
+        margin-top: 320px;
+    }
+
+    .demo-account {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    .sign-in-up-container {
+        flex-direction: column;
+    }
+
+    .sign-in-up-img-contianer {
+        width: 100%;
+    }
+
+    .sign-in-up-data-container {
+        width: 80%;
+    }
+
+    .sign-in-up-overlay-text {
+        left: 0px;
+        right: 50px;
+        text-align: right;
+        z-index: 2;
+        font-size: 12px;
+    }
+}
+
+
+/* ==========================================================================
+Page: My Account Page
+========================================================================== */
+.my-account-page-container {
+    margin-top: 170px;
+}
+
+.my-account-details {
+    display: flex;
+    max-width: 70%;
+    background-color: rgba(0, 0, 0, 0.07);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 60px auto;
+    overflow: hidden;
+}
+
+.my-account-sidebar {
+    padding: 20px;
+    width: 18%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+}
+
+.my-account-sidebar h2 {
+    margin-bottom: 20px;
+    font-weight: 100;
+}
+
+#change-account-details-div {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+#change-account-details-div button {
+    margin-top: 10px;
+}
+
+.my-account-sidebar a {
+    color: rgba(0, 0, 0, 0.707);
+    transition: all 0.3s ease;
+}
+
+.my-account-sidebar a:hover {
+    border-radius: 5px;
+    background-color: gray;
+    color: var(--secondary-color);
+}
+
+.my-account-sidebar-active {
+    border-radius: 4px;
+    background-color: black;
+    color: var(--secondary-color) !important;
+}
+
+.sidebar-link {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.logout {
+    margin-top: auto;
+}
+
+.logout:hover {
+    color: red !important;
+    background-color: black !important;
+}
+
+.my-account-display-style {
+    padding: 30px;
+    width: 100%;
+}
+
+.account-details-container h3 {
+    margin-top: -10px;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.account-details-container p {
+    font-size: 1.1rem;
+}
+
+.account-details-container h2,
+.account-details-container h3,
+.account-details-container h4 {
+    color: #333;
+}
+
+.account-details-container p {
+    margin-bottom: 10px;
+}
+
+.account-details-container button {
+    border: none;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+
+#change-account-details-div button {
+    background-color: #007bff;
+    /* Example color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+}
+
+#change-account-details-div button:hover {
+    background-color: black;
+    color: var(--secondary-color);
+
+}
+
+.account-details-container button:hover {
+    background-color: black;
+    color: var(--secondary-color);
+}
+
+.account-details-container input[type="email"],
+.account-details-container input[type="password"],
+.account-details-container input[type="text"] {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 60%;
+}
+
+.account-details-container form {
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+/* Table Styles */
+#research-planet-search-input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background-color: transparent;
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+#research-planet-search-input:focus {
+    outline: none;
+    border-bottom: 2px solid #4CAF50;
+    /* Highlight color when focused */
+}
+
+/* Style for the search results container */
+/* Style for the search results container */
+#research-results-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 8;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: none;
+    /* Initially hide the search results container */
+}
+
+/* Style for each search result within the container */
+#research-results-container div {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover state for each search result */
+#research-results-container div:hover {
+    background-color: black;
+    color: var(--secondary-color);
+}
+
+
+
+.planet-research-table-container {
+    width: 100%;
+    overflow-y: auto;
+    /* Use 'auto' instead of 'scroll' if you want the scrollbar to only appear when necessary */
+    max-height: 400px;
+    /* Adjust the height as needed */
+}
+
+.planet-research-container table {
+    width: 100%;
+    overflow-y: scroll;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.planet-research-container th,
+.planet-research-container td {
+    text-align: left;
+    padding: 12px 15px;
+}
+
+.planet-research-container th,
+.planet-research-container tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Headings Style */
+.planet-research-container th {
+    background-color: black;
+    color: white;
+}
+
+/* Hover effect for rows */
+.planet-research-container tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Remove Button Style */
+.planet-research-container button,
+.delete-modal-button {
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.planet-research-container button:hover,
+.delete-modal-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Placeholder Text Style */
+.placeholder-text {
+    text-align: center;
+    color: #999;
+}
+
+/* The Modal (background) */
+#note-modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 100;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.note-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    /* Optional: for rounded corners */
+}
+
+/* The Close Button (x) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* The Add planet and Note elements */
+.add-planet {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.planet-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.planet-name {
+    flex-grow: 1;
+}
+
+
+/* The Modal (background) */
+.modal-backdrop {
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    backdrop-filter: blur(8px);
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* Box Shadow for 3D effect */
+}
+
+.modal-content textarea {
+    width: 100%;
+}
+
+.modal-button,
+.details-button {
+    text-decoration: none;
+    font-size: 13px;
+    padding: 8px 16px;
+    background-color: #007bff !important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-button:hover,
+.modal-button:focus,
+.details-button:hover,
+.details-button:focus {
+    background-color: black !important;
+    color: var(--secondary-color);
+}
+
+/* The Close Button */
+.modal-close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.modal-content {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+#note-text,
+#edit-note-text {
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: calc(100% - 10px);
+    resize: vertical;
+}
+
+.planet-research-table-container td {
+    word-wrap: break-word;
+    max-width: 150px;
+}
+
+/* Scrollable note area with fixed height */
+.planet-research-table-container td:nth-child(2) {
+    max-width: 200px;
+}
+
+.planet-research-table-container td:nth-child(3) {
+    max-width: 90px;
+}
+
+.planet-research-table-container td:nth-child(4) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 5px;
+    text-align: center;
+}
+
+/* Ensure the rest of the table cells have a minimum height equal to the note cell */
+.planet-research-table-container td {
+    vertical-align: top;
+    /* Align the content to the top */
+}
+
+.reading-list-table-container {
+    width: 100%;
+    overflow-y: auto;
+    /* Show scrollbar as needed */
+    max-height: 400px;
+    /* Adjust height as needed */
+}
+
+.reading-list-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.reading-list-container th,
+.reading-list-container td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Headings Style */
+.reading-list-container th {
+    background-color: black;
+    color: white;
+}
+
+/* Hover effect for rows */
+.reading-list-container tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Specific styles for columns */
+.reading-list-table-container td:nth-child(1) {
+    word-wrap: break-word;
+    max-width: 150px;
+    /* Adjust as needed for article name */
+}
+
+.reading-list-table-container td:nth-child(2) {
+    max-width: 200px;
+    /* Adjust as needed for date */
+}
+
+.reading-list-table-container td:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 5px;
+    text-align: center;
+    /* Adjust as needed for actions */
+}
+
+/* Placeholder Text Style */
+.placeholder-text {
+    text-align: center;
+    color: #999;
+}
+
+/* Button Styles */
+.reading-list-container button {
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reading-list-container button:hover {
+    background-color: #d32f2f;
+}
+
+/* Add padding to the search input */
+#research-planet-search-input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background-color: transparent;
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+#research-planet-search-input:focus {
+    outline: none;
+    border-bottom: 2px solid #4CAF50;
+    /* Highlight color when focused */
+}
+
+.table-article-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-article-name img {
+    width: 20%;
+}
+
+#sort-selector {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    /* Remove default styling */
+    -webkit-appearance: none;
+    /* For Safari */
+}
+
+#sort-selector:hover,
+#sort-selector:focus {
+    border-color: #888;
+}
+
+#sort-selector option {
+    padding: 10px;
+}
+
+/* Styling for the label */
+label[for="sort-selector"] {
+    margin-top: 25px;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 600;
+}
+
+
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+
+
+@media (max-width: 1000px) {
+    .my-account-page-container {
+        margin-top: 400px;
+    }
+
+    .my-account-display-style {
+        padding: 0px;
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 720px) {
+    .my-account-details {
+        flex-direction: column;
+        max-width: 100%;
+        background-color: transparent;
+        border-radius: 0px;
+        border: none;
+        padding: 20px;
+    }
+
+    .my-account-sidebar {
+        padding: 20px;
+        width: 100%;
+        height: min-content;
+        align-self: center;
+    }
+}
+
+
+/* ==========================================================================
+Page: Missions
+========================================================================== */
+.missions-page-section {
+    margin-top: 118px;
+}
+
+.missions-page-landing-banner {
+    position: relative;
+    display: block;
+    height: 86vh;
+    overflow: hidden;
+}
+
+.missions-page-back-button {
+    position: absolute;
+    top: 8%;
+    left: 10%;
+    margin: 0;
+}
+
+.missions-page-landing-banner-text {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    margin: 0;
+    font-size: 5.5rem;
+    color: white;
+}
+
+.missions-page-landing-banner img {
+    width: 100%;
+    height: 86vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* Places the image below the text and button */
+}
+
+.missions-page-section-data {
+    background-color: black;
+    color: white;
+}
+
+.missions-page-box {
+    padding-top: 100px;
+}
+
+.mission-page-box-heading {
+    font-size: 3.5rem;
+}
+
+.mission-page-box-heading-p {
+    color: gray;
+    font-style: italic;
+    margin-top: -6px;
+    font-size: 1rem;
+}
+
+.mission-page-box-heading-p2 {
+    color: gray;
+    font-style: italic;
+    margin-top: -6px;
+    font-size: 1.5rem;
+}
+
+.missions-table-scroller {
+    max-height: 450px;
+    margin: 30px auto;
+    overflow-y: scroll;
+}
+
+.missions-events-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+    overflow: hidden;
+}
+
+.missions-events-table th,
+.missions-events-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.missions-events-table th {
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.missions-events-table tbody tr:hover {
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.missicon-scroller-slide {
+    display: none;
+}
+
+.missicon-scroller-slide.active {
+    display: block;
+}
+
+.mission-scroller-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+}
+
+.missicon-scroller-slide {
+    position: relative;
+    display: none;
+    width: 100%;
+    height: 100%;
+    transition: opacity 2s ease-in-out;
+}
+
+.missicon-scroller-slide.active {
+    opacity: 1;
+    display: block;
+    /* Show only the active slide */
+}
+
+#missionPrevBtn,
+#missionNextBtn {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+    font-size: 24px;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+
+}
+
+#missionPrevBtn:hover,
+#missionNextBtn:hover {
+    color: var(--primary-color);
+}
+
+#missionPrevBtn {
+    left: 25px;
+}
+
+#missionNextBtn {
+    right: 25px;
+}
+
+.missicon-scroller-slide img {
+    height: 700px;
+    width: 100%;
+    display: block;
+    /* Remove any default margins */
+    object-fit: cover;
+}
+
+.slide-content {
+    position: absolute;
+    bottom: 10%;
+    left: 8%;
+    color: white;
+    text-shadow: 1px 1px 5px black;
+}
+
+.slide-content h1 {
+    font-size: 3rem;
+}
+
+.slide-content h2 {
+    margin-top: -10px;
+    font-size: 1.5rem;
+}
+
+.slide-content p {
+    text-wrap: wrap;
+    width: 75%;
+    margin-top: 10px;
+}
+
+.slide-content a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.missions-navigation-dots {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    transform: translateY(-50%);
+    text-align: center;
+
+}
+
+.missions-navigation-dots-dot {
+    cursor: pointer;
+    height: 65px;
+    width: 65px;
+    margin: 0 5px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+}
+
+.missions-navigation-dots-dot.active {
+    opacity: 1;
+    /* Fully opaque for the active dot */
+}
+
+/* Mobile Responsive */
+@media (max-width: 1000px) {
+    .missions-page-box {
+        padding: 20px;
+    }
+
+    .missicon-scroller-slide img {
+        height: 1200px;
+        width: 100%;
+        display: block;
+        /* Remove any default margins */
+        object-fit: cover;
+    }
+
+    .slide-content {
+        bottom: 15%;
+    }
+
+    .missions-navigation-dots {
+        bottom: 4%;
+    }
+
+    #missionPrevBtn,
+    #missionNextBtn {
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        padding: 20px;
+        font-size: 24px;
+        color: #fff;
+        background-color: transparent;
+        border: none;
+
+    }
+}
+
+
+
+/* ==========================================================================
+Section: Footer
+========================================================================== */
+footer {
+    background-color: #000;
+    /* Adjust the color as per your theme */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+
+}
+
+.back-to-top {
+    text-align: right;
+    padding-top: 1rem;
+    padding-right: 5rem;
+}
+
+.back-to-top a {
+    color: white;
+    text-decoration: none;
+}
+
+.back-to-top img {
+    height: 30px;
+    margin-right: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.back-to-top:hover img {
+    transform: scale(1.2);
+}
+
+.download-app h1 {
+    margin-bottom: 20px;
+}
+
+.download-app a {
+    text-decoration: none;
+}
+
+.download-app img {
+    height: 70px;
+    margin-right: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.download-app a:hover img {
+    transform: scale(1.05);
+}
+
+.footer-legal p {
+    margin: 0;
+    padding: 10px 0;
+}
+
+.links-newsletter {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 20px 0;
+}
+
+.links-newsletter .information p {
+    margin-bottom: 15px;
+}
+
+.links-newsletter .information a {
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.links-newsletter .information img {
+    height: 35px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.links-newsletter .information a:hover img {
+    transform: scale(1.2);
+}
+
+.links-newsletter div {
+    margin: 0 10px;
+}
+
+.quick-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.quick-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.quick-links h3,
+.information h3,
+.contact h3 {
+    margin-bottom: 10px;
+}
+
+.send-email {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.send-email img {
+    height: 32px;
+}
+
+.send-email a {
+    color: white;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+#newsletter-form {
+    margin-top: 20px;
+}
+
+#newsletter-form input[type=email] {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    /* light grey border */
+    border-radius: 4px;
+    margin-right: 5px;
+    outline: none;
+    /* removes the default focus outline */
+    width: 250px;
+    /* specify the width as needed */
+}
+
+#newsletter-form button {
+    /* Style your subscribe button */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    /* a blue shade */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    /* removes the default focus outline */
+    transition: background-color 0.3s ease;
+    /* smooth background color transition */
+}
+
+#newsletter-form button:hover {
+    /* Slightly darker blue when hovering */
+    background-color: #0069d9;
+}
+
+#newsletter-form button:active {
+    /* Even darker blue when clicking */
+    background-color: #0056b3;
+}
+
+/* To improve accessibility, you might want to add styles for the focus state */
+#newsletter-form input[type=email]:focus,
+#newsletter-form button:focus {
+    border-color: #66afe9;
+    /* light blue border for focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    /* glow effect for focus */
+}
+
+#popup-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(0, 191, 73);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+    display: none;
+}
+
+#popup-message.error {
+    background-color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+.footer-legal {
+    margin-top: 30px;
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 1000px) {
+    footer {
+        padding: 15px 0;
+        text-align: center;
+    }
+
+    .download-app h1 {
+        font-size: 1.5rem;
+    }
+
+    .download-app img {
+        height: 50px;
+        margin-right: 15px;
+    }
+
+    .links-newsletter {
+        flex-direction: column;
+        /* Stack elements vertically */
+        gap: 30px;
+        padding: 50px 0;
+    }
+
+    .quick-links ul,
+    .links-newsletter div,
+    .send-email {
+        text-align: center;
+    }
+
+    .quick-links ul li {
+        margin-bottom: 5px;
+    }
+
+    .send-email img {
+        height: 25px;
+    }
+
+    #newsletter-form input[type=email] {
+        width: 60%;
+        /* Make input field width responsive */
+        margin-top: 10px;
+    }
+
+    .footer-legal {
+        margin-top: 20px;
+    }
+}
+
+/* ======================================================================= */
